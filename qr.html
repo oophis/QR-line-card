@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0d1117">
+  <meta name="robots" content="noindex, nofollow">
+  <title>สร้าง QR — LINE QR Card</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔳</text></svg>">
+</head>
+<body>
+  <main class="tool">
+    <h1>สร้าง QR สำหรับการ์ด</h1>
+    <p class="lede">กรอกที่อยู่ของการ์ด แล้วบันทึก QR ไปพิมพ์หรือส่งต่อใน LINE ได้เลย</p>
+
+    <div class="field">
+      <label for="base">ที่อยู่การ์ด (URL ของ index.html)</label>
+      <input type="url" id="base" inputmode="url" spellcheck="false"
+             placeholder="https://user.github.io/qr-line-card/">
+    </div>
+
+    <div class="field">
+      <label for="cardId">รหัสการ์ด (card id)</label>
+      <input type="text" id="cardId" spellcheck="false" placeholder="demo">
+    </div>
+
+    <div class="qr-out">
+      <div class="qr-canvas-wrap"><canvas id="canvas" width="240" height="240"></canvas></div>
+      <div class="qr-link" id="link"></div>
+      <div class="qr-actions">
+        <button type="button" class="btn btn-ghost" id="copy">คัดลอกลิงก์</button>
+        <button type="button" class="btn btn-primary" id="download">บันทึก PNG</button>
+      </div>
+      <div class="tool-error" id="error" hidden></div>
+    </div>
+
+    <p class="tool-links">→ <a href="index.html">เปิดการ์ดเพื่อทดสอบ</a></p>
+  </main>
+
+  <script src="assets/card-data.js"></script>
+  <script src="assets/vendor-qrcode.js"></script>
+  <script src="assets/qr.js"></script>
+</body>
+</html>
