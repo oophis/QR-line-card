@@ -29,6 +29,9 @@
       '<path d="M68 80 q7 -11 14 0 q7 -11 14 0 q7 -11 14 0 q7 -11 14 0"/>' +
       '<line x1="100" y1="80" x2="100" y2="54"/>' +
       '<path d="M100 36 c-7 7 -7 14 0 20 c7 -6 7 -13 0 -20 Z"/>' +
+      // จุดเทียน: แต้มสีอุ่นๆ เล็กน้อยตรงปลายเทียน ท่ามกลางลายเส้นล้วน
+      '<circle cx="100" cy="44" r="9" fill="#ffcf8a" opacity="0.55" stroke="none"/>' +
+      '<circle cx="100" cy="44" r="3.6" fill="#ff8a2b" stroke="none"/>' +
       '<path d="M150 52 v14 M143 59 h14"/>' +
       '<path d="M56 96 v10 M51 101 h10"/>' +
       '</svg>',
@@ -192,15 +195,15 @@
     var slide = elem('section', 'slide slide-gate');
     var card = elem('article', 'card card-gate');
 
-    if (gate.eyebrow) card.appendChild(elem('div', 'eyebrow', gate.eyebrow));
-
     var saved = CardStore.read(state.cardId);
 
     if (state.revealActive && state.revealedChoice) {
+      // ตัดป้าย "หน้า 3" ออกในสถานะที่พื้นที่ตึงอยู่แล้ว (ตัวนับด้านบนบอกอยู่แล้วว่าอยู่หน้าไหน)
       renderReveal(card, gate, state.revealedChoice);
     } else if (saved) {
       renderSealed(card, gate, saved);
     } else {
+      if (gate.eyebrow) card.appendChild(elem('div', 'eyebrow', gate.eyebrow));
       renderChoose(card, gate);
     }
 
@@ -249,7 +252,7 @@
       card.appendChild(codeBox);
     }
 
-    card.appendChild(elem('div', 'warn', '⚠️ หน้านี้แสดงครั้งเดียว ปิดหรือรีเฟรชแล้วจะกลับมาดูไม่ได้อีก'));
+    card.appendChild(elem('div', 'warn', '⚠️ แสดงครั้งเดียว ปิดแล้วดูซ้ำไม่ได้'));
 
     var close = elem('button', 'btn btn-primary btn-block', 'อ่านเสร็จแล้ว ปิดผนึก');
     close.type = 'button';

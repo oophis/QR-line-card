@@ -18,13 +18,19 @@
     </header>
 
     <div class="stage" id="stage">
-      <div class="viewport" id="viewport"></div>
+      <div class="card-frame">
+        <div class="viewport" id="viewport"></div>
+        <button type="button" class="corner-nav corner-prev" id="prev" aria-label="ก่อนหน้า">
+          <span aria-hidden="true">‹</span>
+        </button>
+        <button type="button" class="corner-nav corner-next" id="next" aria-label="ถัดไป">
+          <span aria-hidden="true">›</span>
+        </button>
+      </div>
     </div>
 
-    <nav class="nav" id="nav">
-      <button type="button" class="btn btn-ghost" id="prev">← ก่อนหน้า</button>
+    <nav class="dotsbar" id="nav">
       <div class="dots" id="dots"></div>
-      <button type="button" class="btn btn-ghost" id="next">ถัดไป →</button>
     </nav>
   </main>
 
