@@ -1,18 +1,24 @@
-/* styles.css — mobile-first, ธีมเข้ม, accent เขียว LINE */
+/* styles.css — mobile-first, ทรงการ์ดโค้งมนน่ารัก โทนอบอุ่น (ครีม/พีช/ส้ม) */
 
 :root {
-  --line: #06c755;
-  --line-dim: #05a247;
-  --bg: #0d1117;
-  --bg-soft: #151b23;
-  --surface: #1b2430;
-  --surface-2: #232e3d;
-  --border: #2b3644;
-  --text: #e9eef5;
-  --text-dim: #9aa7b8;
-  --warn: #f0b429;
-  --radius: 18px;
-  --radius-sm: 12px;
+  --accent: #ff8a5b;
+  --accent-dim: #f2703c;
+  --accent-soft: #ffe3cc;
+  --pink: #ff7a93;
+  --pink-soft: #ffe0e6;
+  --yellow: #ffc857;
+
+  --bg: #fff3e6;
+  --bg-soft: #ffe9d6;
+  --surface: #fffaf3;
+  --surface-2: #fff2e2;
+  --border: #f2d9bd;
+  --text: #4a3728;
+  --text-dim: #9a7757;
+  --warn: #d97a1f;
+
+  --radius: 28px;
+  --radius-sm: 16px;
 }
 
 * { box-sizing: border-box; }
@@ -25,7 +31,8 @@ html, body {
 
 body {
   background:
-    radial-gradient(1200px 600px at 50% -10%, #17323f 0%, transparent 60%),
+    radial-gradient(900px 460px at 12% -8%, #ffd9c2 0%, transparent 55%),
+    radial-gradient(800px 420px at 100% 10%, #ffd3de 0%, transparent 50%),
     var(--bg);
   color: var(--text);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans Thai",
@@ -53,29 +60,28 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 4px 2px 14px;
+  padding: 4px 4px 14px;
 }
 
 .brand {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 15px;
   letter-spacing: 0.2px;
+  color: var(--accent-dim);
 }
 
 .brand::before {
-  content: "";
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--line);
-  box-shadow: 0 0 12px var(--line);
+  content: "🌸";
+  font-size: 15px;
+  line-height: 1;
 }
 
 .counter {
   font-size: 13px;
+  font-weight: 700;
   color: var(--text-dim);
   font-variant-numeric: tabular-nums;
 }
@@ -101,28 +107,47 @@ body {
 }
 
 @keyframes slide-in {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(10px) scale(0.99); }
   to   { opacity: 1; transform: none; }
 }
 
 .card {
+  position: relative;
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 14px;
-  background: linear-gradient(180deg, var(--surface) 0%, var(--bg-soft) 100%);
-  border: 1px solid var(--border);
+  background: var(--surface);
+  border: 2px solid var(--border);
   border-radius: var(--radius);
-  padding: 26px 22px;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  padding: 30px 24px 26px;
+  box-shadow:
+    0 22px 44px rgba(242, 112, 60, 0.16),
+    0 2px 0 rgba(255, 255, 255, 0.6) inset;
+  overflow: hidden;
+}
+
+/* แถบขอบด้านบนสีสลับ ให้ดูเป็นการ์ดจริง ๆ */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--pink) 55%, var(--yellow) 100%);
 }
 
 .eyebrow {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 3px 12px;
   font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 1.4px;
-  text-transform: uppercase;
-  color: var(--line);
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-dim);
 }
 
 .card-title {
@@ -130,6 +155,7 @@ body {
   font-size: 26px;
   line-height: 1.35;
   font-weight: 800;
+  color: var(--text);
 }
 
 .card-body { display: flex; flex-direction: column; gap: 12px; }
@@ -137,26 +163,27 @@ body {
 .body-line {
   margin: 0;
   font-size: 16px;
-  color: #cfd9e6;
+  color: #6b5540;
 }
 
 .note {
   margin-top: auto;
   padding: 12px 14px;
-  background: rgba(6, 199, 85, 0.08);
-  border: 1px solid rgba(6, 199, 85, 0.25);
+  background: var(--pink-soft);
+  border: 1px solid #ffc7d2;
   border-radius: var(--radius-sm);
   font-size: 14px;
-  color: #b8e6cb;
+  color: #b6425f;
 }
 
 .warn {
   padding: 11px 14px;
-  background: rgba(240, 180, 41, 0.1);
-  border: 1px solid rgba(240, 180, 41, 0.3);
+  background: #fff2d6;
+  border: 1px solid #f4d896;
   border-radius: var(--radius-sm);
   font-size: 13.5px;
-  color: #f5d489;
+  color: var(--warn);
+  font-weight: 600;
 }
 
 /* ---------------- gate: เลือกซ้าย/ขวา ---------------- */
@@ -170,7 +197,7 @@ body {
 .picker {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 14px;
   margin: 6px 0 4px;
 }
 
@@ -179,38 +206,51 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  padding: 26px 12px;
+  padding: 28px 12px;
   background: var(--surface-2);
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius);
+  border: 2px solid var(--border);
+  border-radius: 22px;
   color: var(--text);
   font-family: inherit;
   cursor: pointer;
-  transition: transform 140ms ease, border-color 140ms ease, background 140ms ease;
+  transition: transform 140ms ease, border-color 140ms ease, background 140ms ease,
+    box-shadow 140ms ease;
 }
+
+.option-left { background: var(--accent-soft); }
+.option-right { background: var(--pink-soft); }
 
 .option:hover,
 .option:focus-visible {
-  border-color: var(--line);
-  background: #26364a;
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 22px rgba(242, 112, 60, 0.18);
   outline: none;
 }
 
-.option:active { transform: scale(0.97); }
+.option-right:hover,
+.option-right:focus-visible { border-color: var(--pink); box-shadow: 0 12px 22px rgba(255, 122, 147, 0.2); }
 
-.option-icon { font-size: 34px; line-height: 1; }
+.option:active { transform: scale(0.97) translateY(0); }
+
+.option-icon {
+  font-size: 36px;
+  line-height: 1;
+  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.08));
+}
+
 .option-label { font-size: 19px; font-weight: 800; }
 .option-teaser { font-size: 13px; color: var(--text-dim); text-align: center; }
 
 /* ---------------- gate: เปิดครั้งเดียว ---------------- */
 
-.card.is-revealed { border-color: rgba(6, 199, 85, 0.5); }
+.card.is-revealed { border-color: var(--accent); }
 
 .reveal-badge {
   align-self: flex-start;
-  padding: 6px 13px;
-  background: var(--line);
-  color: #04220f;
+  padding: 6px 14px;
+  background: linear-gradient(90deg, var(--accent), var(--pink));
+  color: #fff;
   border-radius: 999px;
   font-size: 13px;
   font-weight: 800;
@@ -222,18 +262,18 @@ body {
   justify-content: space-between;
   gap: 12px;
   padding: 14px 16px;
-  background: #0b1017;
-  border: 1px dashed var(--line);
+  background: var(--accent-soft);
+  border: 2px dashed var(--accent);
   border-radius: var(--radius-sm);
 }
 
-.code-label { font-size: 12px; color: var(--text-dim); letter-spacing: 1px; }
+.code-label { font-size: 12px; color: var(--accent-dim); letter-spacing: 1px; font-weight: 700; }
 
 .code-value {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 19px;
   letter-spacing: 2px;
-  color: var(--line);
+  color: var(--accent-dim);
 }
 
 /* ---------------- gate: ปิดผนึกแล้ว ---------------- */
@@ -246,13 +286,12 @@ body {
   font-size: 52px;
   line-height: 1;
   margin-top: 12px;
-  filter: grayscale(0.2);
 }
 
 .sealed-meta {
   width: 100%;
   padding: 14px;
-  background: #0b1017;
+  background: var(--surface-2);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   font-size: 14px;
@@ -265,8 +304,8 @@ body {
 
 .btn {
   padding: 12px 18px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
+  border-radius: 999px;
+  border: 2px solid var(--border);
   background: var(--surface-2);
   color: var(--text);
   font-family: inherit;
@@ -278,15 +317,16 @@ body {
 
 .btn:active { transform: scale(0.98); }
 .btn:disabled { opacity: 0.35; cursor: not-allowed; }
-.btn:focus-visible { outline: 2px solid var(--line); outline-offset: 2px; }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 .btn-primary {
-  background: var(--line);
-  border-color: var(--line);
-  color: #04220f;
+  background: linear-gradient(90deg, var(--accent), var(--pink));
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 10px 20px rgba(242, 112, 60, 0.28);
 }
 
-.btn-primary:hover:not(:disabled) { background: var(--line-dim); }
+.btn-primary:hover:not(:disabled) { filter: brightness(1.04); }
 .btn-ghost { background: transparent; }
 .btn-ghost:hover:not(:disabled) { background: var(--surface-2); }
 .btn-block { width: 100%; margin-top: auto; }
@@ -312,14 +352,14 @@ body {
   padding: 0;
   border: none;
   border-radius: 50%;
-  background: #3a4657;
+  background: #f0d9c2;
   cursor: pointer;
   transition: background 160ms ease, transform 160ms ease;
 }
 
-.dot.is-active { background: var(--line); transform: scale(1.35); }
-.dot.is-locked { background: #55606f; box-shadow: inset 0 0 0 2px #0d1117; }
-.dot:focus-visible { outline: 2px solid var(--line); outline-offset: 3px; }
+.dot.is-active { background: var(--accent); transform: scale(1.35); }
+.dot.is-locked { background: #e3b98f; box-shadow: inset 0 0 0 2px var(--bg); }
+.dot:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 /* ---------------- modal ---------------- */
 
@@ -330,7 +370,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 22px;
-  background: rgba(3, 6, 10, 0.72);
+  background: rgba(74, 55, 40, 0.45);
   backdrop-filter: blur(3px);
   opacity: 0;
   transition: opacity 160ms ease;
@@ -343,10 +383,10 @@ body {
   width: 100%;
   max-width: 380px;
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
   border-radius: var(--radius);
   padding: 22px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+  box-shadow: 0 24px 60px rgba(74, 55, 40, 0.28);
   transform: translateY(12px) scale(0.98);
   transition: transform 180ms ease;
 }
@@ -374,8 +414,8 @@ body {
   justify-content: space-between;
   gap: 12px;
   padding: 9px 14px calc(9px + env(safe-area-inset-bottom));
-  background: #05070a;
-  border-top: 1px solid var(--border);
+  background: #4a3728;
+  border-top: 1px solid #614632;
   font-size: 12px;
   z-index: 40;
 }
@@ -384,16 +424,22 @@ body.has-devbar .app { padding-bottom: 72px; }
 
 .devbar-label {
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  color: var(--text-dim);
+  color: #d8bfa4;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
+.devbar .btn {
+  background: #614632;
+  border-color: #7a5a3f;
+  color: #ffe9d6;
+}
+
 /* ---------------- QR tool (qr.html) ---------------- */
 
 .tool { max-width: 520px; margin: 0 auto; padding: 24px 16px 60px; }
-.tool h1 { font-size: 24px; margin: 0 0 6px; }
+.tool h1 { font-size: 24px; margin: 0 0 6px; color: var(--accent-dim); }
 .tool .lede { margin: 0 0 22px; color: var(--text-dim); font-size: 15px; }
 
 .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
@@ -402,14 +448,14 @@ body.has-devbar .app { padding-bottom: 72px; }
 .field input {
   padding: 12px 14px;
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
   border-radius: var(--radius-sm);
   color: var(--text);
   font-family: inherit;
   font-size: 15px;
 }
 
-.field input:focus { outline: 2px solid var(--line); outline-offset: 1px; }
+.field input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
 
 .qr-out {
   display: flex;
@@ -418,13 +464,14 @@ body.has-devbar .app { padding-bottom: 72px; }
   gap: 14px;
   padding: 22px;
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
   border-radius: var(--radius);
 }
 
 .qr-canvas-wrap {
   padding: 14px;
   background: #fff;
+  border: 2px dashed var(--accent-soft);
   border-radius: var(--radius-sm);
   line-height: 0;
 }
@@ -434,12 +481,12 @@ body.has-devbar .app { padding-bottom: 72px; }
 .qr-link {
   width: 100%;
   padding: 11px 13px;
-  background: #0b1017;
+  background: var(--surface-2);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 12.5px;
-  color: #a8d8bd;
+  color: var(--accent-dim);
   word-break: break-all;
 }
 
@@ -448,15 +495,15 @@ body.has-devbar .app { padding-bottom: 72px; }
 
 .tool-error {
   padding: 12px 14px;
-  background: rgba(240, 90, 90, 0.1);
-  border: 1px solid rgba(240, 90, 90, 0.35);
+  background: #ffe1e1;
+  border: 1px solid #ffb3b3;
   border-radius: var(--radius-sm);
-  color: #f3b0b0;
+  color: #b23a3a;
   font-size: 14px;
 }
 
 .tool-links { margin-top: 26px; font-size: 14px; }
-.tool-links a { color: var(--line); }
+.tool-links a { color: var(--accent-dim); font-weight: 700; }
 
 /* ---------------- a11y ---------------- */
 
