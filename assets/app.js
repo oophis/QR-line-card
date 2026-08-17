@@ -14,6 +14,45 @@
 
   var CARD_ID_RE = /^[A-Za-z0-9_-]{1,64}$/;
 
+  /**
+   * ภาพประกอบพื้นหลังแบบลายเส้น (ไม่ลงสี) — วางเป็นวอเตอร์มาร์กจางๆ หลังข้อความ
+   * เพิ่มลายใหม่ได้ที่นี่ แล้วอ้างถึงด้วย page.art: '<key>' ใน card-data.js
+   */
+  var CARD_ART = {
+    cake:
+      '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="4" ' +
+      'stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">' +
+      '<ellipse cx="100" cy="168" rx="64" ry="9"/>' +
+      '<path d="M40 168 L40 124 Q40 120 44 120 L156 120 Q160 120 160 124 L160 168"/>' +
+      '<path d="M40 120 q9 -13 18 0 q9 -13 18 0 q9 -13 18 0 q9 -13 18 0 q9 -13 18 0 q9 -13 18 0"/>' +
+      '<path d="M68 120 L68 84 Q68 80 72 80 L128 80 Q132 80 132 84 L132 120"/>' +
+      '<path d="M68 80 q7 -11 14 0 q7 -11 14 0 q7 -11 14 0 q7 -11 14 0"/>' +
+      '<line x1="100" y1="80" x2="100" y2="54"/>' +
+      '<path d="M100 36 c-7 7 -7 14 0 20 c7 -6 7 -13 0 -20 Z"/>' +
+      '<path d="M150 52 v14 M143 59 h14"/>' +
+      '<path d="M56 96 v10 M51 101 h10"/>' +
+      '</svg>',
+
+    'sleepy-cat':
+      '<svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="4" ' +
+      'stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">' +
+      '<path d="M64 150 Q60 190 100 190 Q140 190 136 150"/>' +
+      '<path d="M132 168 Q168 170 162 128 Q158 100 130 104"/>' +
+      '<circle cx="100" cy="112" r="38"/>' +
+      '<path d="M76 82 L64 48 L96 76 Z"/>' +
+      '<path d="M124 82 L136 48 L104 76 Z"/>' +
+      '<path d="M82 104 q7 8 14 0"/>' +
+      '<path d="M104 104 q7 8 14 0"/>' +
+      '<path d="M96 120 L104 120 L100 126 Z"/>' +
+      '<path d="M92 130 Q96 136 100 130 Q104 136 108 130"/>' +
+      '<path d="M74 116 L46 111 M74 123 L46 123 M74 130 L46 135"/>' +
+      '<path d="M126 116 L154 111 M126 123 L154 123 M126 130 L154 135"/>' +
+      '<path d="M132 42 h12 l-12 12 h12"/>' +
+      '<path d="M148 60 h9 l-9 9 h9"/>' +
+      '<path d="M160 76 h6 l-6 6 h6"/>' +
+      '</svg>',
+  };
+
   var state = {
     cardId: null,
     card: null,
@@ -114,9 +153,24 @@
 
   /* ---------------- rendering: pages ---------------- */
 
+  function renderCardArt(key) {
+    var svg = CARD_ART[key];
+    if (!svg) return null;
+    var wrap = elem('div', 'card-art card-art-' + key);
+    wrap.setAttribute('aria-hidden', 'true');
+    wrap.innerHTML = svg;
+    return wrap;
+  }
+
   function renderPage(page) {
     var slide = elem('section', 'slide');
     var card = elem('article', 'card');
+
+    // ลายเส้นพื้นหลัง (ถ้ามี) เป็น absolute ไม่กินพื้นที่ flex ของการ์ด
+    if (page.art) {
+      var art = renderCardArt(page.art);
+      if (art) card.appendChild(art);
+    }
 
     if (page.eyebrow) card.appendChild(elem('div', 'eyebrow', page.eyebrow));
     card.appendChild(elem('h1', 'card-title', page.title));

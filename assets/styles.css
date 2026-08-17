@@ -138,6 +138,34 @@ body {
   background: linear-gradient(90deg, var(--accent) 0%, var(--pink) 55%, var(--yellow) 100%);
 }
 
+/* ลายเส้นพื้นหลัง — วอเตอร์มาร์กจางๆ สีเดียวกับกรอบการ์ด ไม่ลงสี ไม่รับคลิก */
+.card-art {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  pointer-events: none;
+  opacity: 0.5;
+  color: var(--border);
+}
+
+.card-art svg { display: block; }
+
+.card-art-cake {
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 6px;
+}
+
+.card-art-cake svg { width: 78%; height: auto; }
+
+.card-art-sleepy-cat {
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 8px 4px;
+}
+
+.card-art-sleepy-cat svg { width: 56%; height: auto; }
+
 .eyebrow {
   display: inline-flex;
   align-self: flex-start;
